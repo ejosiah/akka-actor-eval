@@ -7,9 +7,23 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.scala-lang:scala-library:2.13.1'
+    compile 'org.scala-lang:scala-library:2.12.10'
+    compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.12', version: '2.6.1'
 
-    compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.1'
+    testCompile group: 'com.typesafe.akka', name: 'akka-actor-testkit-typed_2.12', version: '2.6.1'
 
-    testCompile group: 'org.scalatest', name: 'scalatest_2.13', version: '3.1.0'
+    testImplementation 'org.scala-lang:scala-library:2.12.10'
+    testImplementation 'org.scalatest:scalatest_2.12:3.0.5'
+    testRuntime 'org.pegdown:pegdown:1.6.0'
+}
+
+
+task wrapper(type: Wrapper){
+    gradleVersion = "4.10.2"
+}
+
+task print {
+    doLast{
+        println sourceSets*.scala.srcDirs
+    }
 }
